@@ -48,6 +48,10 @@
       prompt: "Enable WireGuard? Press enter for default "
       default: "yes"
       private: no
+    - name: streisand_mtproto_proxy_enabled
+      prompt: "Enable MTProxy? Press enter for default "
+      default: "yes"
+      private: no
 
   tasks:
     - lineinfile:
@@ -94,3 +98,7 @@
         path: "{{ streisand_site_vars }}"
         regexp: "^streisand_wireguard_enabled: (?:yes|no)$"
         line: "streisand_wireguard_enabled: {{ streisand_wireguard_enabled }}"
+    - lineinfile:
+        path: "{{ streisand_site_vars }}"
+        regexp: "^streisand_mtproto_proxy_enabled: (?:yes|no)$"
+        line: "streisand_mtproto_proxy_enabled: {{ streisand_mtproto_proxy_enabled }}"
