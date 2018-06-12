@@ -16,6 +16,17 @@
   args:
     chdir: "{{ mtproxy_compilation_directory }}"
     creates: "{{ mtproxy_compilation_directory }}/src/mtproxy"  
+  
+  name: Create the MTProxy directory
+  file:
+    path: "/usr/local/bin/mtproxy/"
+    owner: root
+    # The nobody user in nogroup needs to be able to read the config file
+    group: nogroup
+    # It is safe to make this directory world read only because the password
+    # file and config file are not
+    mode: 0755
+    state: directory
     
 - name: Copy MTProxy file
   copy:
