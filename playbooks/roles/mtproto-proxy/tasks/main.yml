@@ -32,7 +32,7 @@
   copy:
     src: "{{ mtproxy_compilation_directory }}/objs/bin/mtproto-proxy"
     dest: "{{ mtproxy_exec_location }}/mtproto-proxy"
-    mode: 0644
+    mode: 0755
     
 - name: Create the MTProxy config directory
   file:
@@ -83,7 +83,7 @@
     
     
 - name: Run MTProxy
-  shell: "./mtproto-proxy -u nobody -p 8888 -H 443 -S {{ mtproxy_secret }} --aes-pwd {{ mtproxy_secret_file }} {{ mtproxy_proxy_multi_config }} -M 1"
+  shell: "./mtproto-proxy -u nobody -p 8888 -H 443 -S {{ mtproxy_secret.stdout }} --aes-pwd {{ mtproxy_secret_file }} {{ mtproxy_proxy_multi_config }} -M 1"
   args:
    chdir: "{{ mtproxy_exec_location }}"
 
