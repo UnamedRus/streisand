@@ -1,0 +1,5 @@
+---
+- name: Restart MTProxy
+  systemd:
+    name: MTProxy.service
+    state: restarted

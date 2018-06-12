@@ -1,0 +1,13 @@
+[Unit]
+Description=MTProxy
+After=network.target
+Documentation=https://github.com/TelegramMessenger/MTProxy
+
+[Service]
+Type=simple
+WorkingDirectory={{ mtproxy_location }}
+ExecStart= /usr/local/bin/mtproxy/mtproto-proxy -u nobody -p 8888 -H 443 -S {{ mtproxy_secret.stdout }} -P {{ mtproxy_proxy_tag }}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

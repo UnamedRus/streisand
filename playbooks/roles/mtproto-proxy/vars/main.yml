@@ -1,0 +1,30 @@
+---
+# Note: these dependencies are only sufficient to build from source with the
+#       --disable-documentation flag to configure. It is *not* sufficient to
+#       build a .deb
+shadowsocks_dependencies:
+  - git
+  - gcc
+  - make
+  - autoconf
+  - automake
+  - build-essential
+  - zlib1g-dev
+  - libssl-dev
+
+# Configuring the build without documentation means we save close to 900mb of deps
+# with the tradeoff of not creating man pages
+
+mtproxy_location: "/etc/mtproxy"
+mtproxy_secret_file: "{{ mtproxy_location }}/proxy-secret"
+mtproxy_proxy_multi_config: "{{ mtproxy_locationn }}/proxy-multi.conf"
+
+# simple-obfs vars
+mtproxy_version: "0.0.5"
+#mtproxy_compilation_directory: "/usr/local/src/mtproxy-{{ mtproxy_version }}"
+mtproxy_compilation_directory: "/usr/local/src/mtproxy"
+
+
+# Add -v for verbose mode to help with debugging
+
+mtproxy_systemd_service_path: "/etc/systemd/system/MTProxy.service"
