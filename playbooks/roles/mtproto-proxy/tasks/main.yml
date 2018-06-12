@@ -38,7 +38,7 @@
   file:
     path: "{{ mtproxy_location }}"
     owner: root
-    # The nobody user in nogroup needs to be able to read the config file
+    # The nobody u  ser in nogroup needs to be able to read the config file
     group: nogroup
     # It is safe to make this directory world read only because the password
     # file and config file are not
@@ -82,15 +82,15 @@
   changed_when: False
     
     
-- name: Run MTProxy
-  shell: "./mtproto-proxy -u nobody -p 8888 -H 443 -S {{ mtproxy_secret.stdout }} --aes-pwd {{ mtproxy_secret_file }} {{ mtproxy_proxy_multi_config }} -M 1"
-  args:
-   chdir: "{{ mtproxy_exec_location }}"
+#- name: Run MTProxy
+#  shell: "./mtproto-proxy -u nobody -p 8888 -H 443 -S {{ mtproxy_secret.stdout }} --aes-pwd {{ mtproxy_secret_file }} {{ mtproxy_proxy_multi_config }} -M 1"
+#  args:
+#   chdir: "{{ mtproxy_exec_location }}"
 
-- name: Stop (init.d's) MTProxy
-  systemd:
-    name: MTProxy.service
-    state: stopped
+#- name: Stop (init.d's) MTProxy
+#  systemd:
+#    name: MTProxy.service
+#    state: stopped
 
 - name: Copy the MTProxy system unit file
   template:
@@ -104,3 +104,4 @@
     name: MTProxy.service
     enabled: yes
     state: restarted
+
