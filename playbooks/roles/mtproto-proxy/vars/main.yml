@@ -2,7 +2,7 @@
 # Note: these dependencies are only sufficient to build from source with the
 #       --disable-documentation flag to configure. It is *not* sufficient to
 #       build a .deb
-shadowsocks_dependencies:
+mtproxy_dependencies:
   - git
   - gcc
   - make
