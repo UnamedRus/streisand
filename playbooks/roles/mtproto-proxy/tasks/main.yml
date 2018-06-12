@@ -11,13 +11,13 @@
     install_recommends: no
   with_items: "{{ mtproxy_dependencies }}"
   
-- name: Compile MTProxy {{ mtproxy_version }} source
+- name: Compile MTProxy from source
   command: "make -j{{ ansible_processor_cores }}"
   args:
     chdir: "{{ mtproxy_compilation_directory }}"
     creates: "{{ mtproxy_compilation_directory }}/src/mtproxy"  
   
-  name: Create the MTProxy directory
+- name: Create the MTProxy directory
   file:
     path: "/usr/local/bin/mtproxy/"
     owner: root
