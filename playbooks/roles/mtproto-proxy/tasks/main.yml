@@ -19,7 +19,7 @@
   
 - name: Create the MTProxy directory
   file:
-    path: "/usr/local/bin/mtproxy/"
+    path: "{{ mtproxy_exec_location }}"
     owner: root
     # The nobody user in nogroup needs to be able to read the config file
     group: nogroup
@@ -31,7 +31,7 @@
 - name: Copy MTProxy file
   copy:
     src: "{{ mtproxy_compilation_directory }}/objs/bin/mtproto-proxy"
-    dest: "/usr/local/bin/mtproxy/mtproto-proxy"
+    dest: "{{ mtproxy_exec_location }}/mtproto-proxy"
     mode: 0644
     
 - name: Create the MTProxy config directory
@@ -83,8 +83,9 @@
     
     
 - name: Run MTProxy
-  shell: "/mtproto-proxy -u nobody -p 8888 -H 443 -S {{ mtproxy_secret }} --aes-pwd {{ mtproxy_secret_file }} {{ mtproxy_proxy_multi_config }} -M 1"
- 
+  shell: "./mtproto-proxy -u nobody -p 8888 -H 443 -S {{ mtproxy_secret }} --aes-pwd {{ mtproxy_secret_file }} {{ mtproxy_proxy_multi_config }} -M 1"
+  args:
+   chdir: "{{ mtproxy_exec_location }}"
 
 - name: Stop (init.d's) MTProxy
   systemd:
