@@ -20,7 +20,7 @@ mtproxy_secret_file: "{{ mtproxy_location }}/proxy-secret"
 mtproxy_secret_user_file: "{{ mtproxy_location }}/proxy-secret-user"
 mtproxy_exec_location: "/usr/local/bin/mtproxy"
 mtproxy_proxy_multi_config: "{{ mtproxy_location }}/proxy-multi.conf"
-
+mtproxy_proxy_tag: ""
 mtproxy_version: "0.0.5"
 #mtproxy_compilation_directory: "/usr/local/src/mtproxy-{{ mtproxy_version }}"
 mtproxy_compilation_directory: "/usr/local/src/mtproxy"
