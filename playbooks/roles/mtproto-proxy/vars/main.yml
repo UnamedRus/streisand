@@ -17,6 +17,8 @@ mtproxy_dependencies:
 
 mtproxy_location: "/etc/mtproxy"
 mtproxy_secret_file: "{{ mtproxy_location }}/proxy-secret"
+mtproxy_secret_user_file: "{{ mtproxy_location }}/proxy-secret-user"
+
 mtproxy_proxy_multi_config: "{{ mtproxy_location }}/proxy-multi.conf"
 
 # simple-obfs vars
