@@ -7,7 +7,7 @@
     
 
 - name: Compile MTProxy {{ mtproxy_version }} source
-  command: make -j{{ ansible_processor_cores }}
+  command: "make -j{{ ansible_processor_cores }}"
   args:
     chdir: "{{ mtproxy_compilation_directory }}"
     creates: "{{ mtproxy_compilation_directory }}/src/mtproxy"  
@@ -36,19 +36,19 @@
     mode: 0644
 
 - name: Obtain a secret, used to connect to telegram servers
-  shell: curl -s https://core.telegram.org/getProxySecret > {{ mtproxy_secret_file }}
+  shell: "curl -s https://core.telegram.org/getProxySecret > {{ mtproxy_secret_file }}"
   args:
     creates: "{{ mtproxy_secret_file }}"    
 
 - name: Obtain current telegram configuration
-  shell: curl -s https://core.telegram.org/getProxyConfig > {{ mtproxy_proxy_multi_config }}
+  shell: "curl -s https://core.telegram.org/getProxyConfig > {{ mtproxy_proxy_multi_config }}"
   args:
     creates: "{{ mtproxy_proxy_multi_config }}"  
 
 - import_tasks: secret.yml
 
 - name: Run MTProxy
-  shell: /mtproto-proxy -u nobody -p 8888 -H 443 -S {{ mtproxy_secret }} --aes-pwd {{ mtproxy_secret_file }} {{ mtproxy_proxy_multi_config }} -M 1
+  shell: "/mtproto-proxy -u nobody -p 8888 -H 443 -S {{ mtproxy_secret }} --aes-pwd {{ mtproxy_secret_file }} {{ mtproxy_proxy_multi_config }} -M 1"
  
 
 - name: Stop (init.d's) MTProxy
@@ -59,7 +59,7 @@
 - name: Copy the MTProxy system unit file
   template:
     src: MTProxy.service.j2
-    dest: {{ mtproxy_systemd_service_path }}
+    dest: "{{ mtproxy_systemd_service_path }}"
     mode: "0644"
 
 - name: Enable the MTProxy service
