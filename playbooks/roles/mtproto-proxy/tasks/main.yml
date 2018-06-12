@@ -5,19 +5,24 @@
     dest: "{{ mtproxy_compilation_directory }}"
 #    version: "v{{mtproxy_version}}"
     
-
+- name: Install the MTProxy dependencies
+  apt:
+    name: "{{ item }}"
+    install_recommends: no
+  with_items: "{{ mtproxy_dependencies }}"
+  
 - name: Compile MTProxy {{ mtproxy_version }} source
   command: "make -j{{ ansible_processor_cores }}"
   args:
     chdir: "{{ mtproxy_compilation_directory }}"
     creates: "{{ mtproxy_compilation_directory }}/src/mtproxy"  
     
-- name: Install MTProxy {{ mtproxy_version }} binaries
-  command: make install
-  args:
-    chdir: "{{ mtproxy_compilation_directory }}"
-    creates: "/usr/local/bin/mtproxy"
-
+- name: Copy MTProxy file
+  copy:
+    src: "{{ mtproxy_compilation_directory }}/objs/bin/mtproto-proxy"
+    dest: "/usr/local/bin/mtproxy/mtproto-proxy"
+    mode: 0644
+    
 - name: Create the MTProxy config directory
   file:
     path: "{{ mtproxy_location }}"
