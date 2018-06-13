@@ -6,7 +6,7 @@ Documentation=https://github.com/TelegramMessenger/MTProxy
 [Service]
 Type=simple
 WorkingDirectory={{ mtproxy_location }}
-ExecStart={{ mtproxy_exec_location }}/mtproto-proxy -u nobody -p 8888 -H {{ mtproxy_port }} -S {{ mtproxy_secret.stdout}} --aes-pwd proxy-secret proxy-multi.conf -M 1
+ExecStart={{ mtproxy_exec_location }}/mtproto-proxy -u nobody -p 6666 -H {{ mtproxy_port }} -S {{ mtproxy_secret.stdout}} --aes-pwd proxy-secret proxy-multi.conf -M 1
 Restart=on-failure
 
 [Install]

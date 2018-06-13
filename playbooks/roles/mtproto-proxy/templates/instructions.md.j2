@@ -19,6 +19,11 @@ MTProto-proxy
 1. Extract the archive, and double-click on the Shadowsocks.exe file.
 1. Make sure the QR code below is centered and completely visible, right-click on the Shadowsocks system tray icon, and go to *Servers* > *Scan QRCode from Screen...*
 
+link 
+ tg://proxy?server={{ streisand_ipv4_address }}&port=443&secret={{ mtproxy_secret.stdout}}
+
+https://t.me/proxy?server={{ streisand_ipv4_address }}&port=443&secret={{ mtproxy_secret.stdout}}
+
    ![Shadowsocks QR code](/shadowsocks/shadowsocks-qr-code.png)
 1. You may also go to *Servers* > *New server* and manually complete the following steps:
    1. Enter `{{ streisand_ipv4_address }}` as the *Server IP*.

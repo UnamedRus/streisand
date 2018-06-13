@@ -17,7 +17,7 @@ protocols:
      { name: "openvpn"; host: "127.0.0.1"; port: "{{ openvpn_port }}"; probe: "builtin"; },
 {% endif %}
 {% if streisand_mtproto_proxy_enabled %}
-     { name: "anyprot"; host: "127.0.0.1"; port: "{{ mtproxy_port }}"; probe: "builtin"; },
+     { name: "anyprot"; host: "127.0.0.1"; port: "{{ mtproxy_port }}"; probe: "builtin"; }
 {% else %}
      { name: "anyprot"; host: "127.0.0.1"; port: "{{ nginx_port }}";   probe: "builtin"; }
 {% endif %}
