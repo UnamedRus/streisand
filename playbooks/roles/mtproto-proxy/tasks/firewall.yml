@@ -1,0 +1,6 @@
+---
+- name: Ensure UFW allows MTProxy
+  ufw:
+    to_port: "{{ mtproxy_port }}"
+    proto: "any"
+    rule: "allow"
